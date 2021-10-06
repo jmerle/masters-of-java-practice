@@ -1,0 +1,5 @@
+# Repositories cloned by run.sh
+/repositories
+
+# The javadoc zip cannot be distributed via GitHub because of its license
+mastersofjava/javadoc.zip

@@ -1,6 +1,6 @@
 # Masters of Java Practice
 
-This repository contains Docker Compose configuration to easily run the Masters of Java server locally to practice on assignments from previous years.
+This repository contains Docker Compose configuration to easily run the [Masters of Java server](https://github.com/mastersofjava/mastersofjava) locally to practice on [assignments from previous years](https://github.com/First8/mastersofjava).
 
 ## Usage
 

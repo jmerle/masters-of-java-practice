@@ -7,17 +7,17 @@ RUN mkdir /javadoc && \
     cp -r /javadoc/docs/api /data/moj-data/javadoc/api
 
 COPY ./repositories/assignments /assignments
-COPY ./repositories/mastersofjava /mastersofjava
+COPY ./repositories/server /server
 
 COPY ./mastersofjava/update-assignments.sh /update-assignments.sh
 COPY ./mastersofjava/sort-assignments.patch /sort-assignments.patch
 
-WORKDIR /mastersofjava
+WORKDIR /server
 
 RUN bash /update-assignments.sh
 RUN git apply --ignore-whitespace /sort-assignments.patch
 RUN mvn compile
 
-COPY ./mastersofjava/application.yaml /mastersofjava/src/main/resources/application.yaml
+COPY ./mastersofjava/application.yaml /server/src/main/resources/application.yaml
 
 ENTRYPOINT ["mvn", "spring-boot:run"]

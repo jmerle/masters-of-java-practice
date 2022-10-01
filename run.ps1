@@ -10,4 +10,4 @@ if (Test-Path -Path "repositories/mastersofjava") {
     git clone https://github.com/mastersofjava/mastersofjava.git repositories/mastersofjava
 }
 
-docker-compose up $args
+docker compose up $args

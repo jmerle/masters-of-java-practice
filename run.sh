@@ -12,4 +12,4 @@ else
     git clone https://github.com/mastersofjava/mastersofjava.git repositories/mastersofjava
 fi
 
-docker-compose up "$@"
+docker compose up "$@"

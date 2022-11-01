@@ -1,0 +1,6 @@
+[submodule "repositories/server"]
+	path = repositories/server
+	url = https://github.com/mastersofjava/mastersofjava.git
+[submodule "repositories/assignments"]
+	path = repositories/assignments
+	url = https://github.com/First8/mastersofjava.git

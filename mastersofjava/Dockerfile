@@ -1,5 +1,7 @@
 FROM maven:3.8.2-jdk-11
 
+RUN apt-get update && apt-get install -y patch
+
 COPY ./mastersofjava/javadoc.zip /javadoc.zip
 RUN mkdir /javadoc && \
     unzip -q /javadoc.zip "docs/api/*" -d /javadoc && \
@@ -15,7 +17,7 @@ COPY ./mastersofjava/sort-assignments.patch /sort-assignments.patch
 WORKDIR /server
 
 RUN bash /update-assignments.sh
-RUN git apply --ignore-whitespace /sort-assignments.patch
+RUN patch /server/src/main/java/nl/moj/server/assignment/service/AssignmentService.java /sort-assignments.patch
 RUN mvn compile
 
 COPY ./mastersofjava/application.yaml /server/src/main/resources/application.yaml

@@ -6,7 +6,7 @@ This repository contains Docker Compose configuration to easily run the [Masters
 
 First time:
 1. Clone this repository.
-2. Download the [JDK 11 javadoc from Oracle](https://www.oracle.com/java/technologies/javase-jdk11-doc-downloads.html) to `mastersofjava/javadoc.zip`.
+2. Download the [JDK 17 javadoc from Oracle](https://www.oracle.com/java/technologies/javase-jdk17-doc-downloads.html) to `mastersofjava/javadoc.zip`.
 3. `cd` into the repository's directory and run `docker compose up` to start the server.
 4. Wait until the server has started and then go to [http://localhost:8080/control](http://localhost:8080/control).
 5. Login with username `admin` and password `admin`.

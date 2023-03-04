@@ -4,10 +4,18 @@ moj:
     performance-validation: true
     languages:
       java-versions:
+        - version: 10
+          name: Java 10
+          compiler: /opt/java/10/bin/javac
+          runtime: /opt/java/10/bin/java
         - version: 11
           name: Java 11
-          compiler: /usr/local/openjdk-11/bin/javac
-          runtime: /usr/local/openjdk-11/bin/java
+          compiler: /opt/java/openjdk/bin/javac
+          runtime: /opt/java/openjdk/bin/java
+        - version: 17
+          name: Java 17
+          compiler: /opt/java/17/bin/javac
+          runtime: /opt/java/17/bin/java
     directories:
       team-directory: teams
       lib-directory: lib

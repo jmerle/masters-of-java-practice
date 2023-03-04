@@ -1,6 +1,12 @@
-FROM maven:3.8.2-jdk-11
+FROM azul/zulu-openjdk:10 AS java10
+FROM eclipse-temurin:17 AS java17
 
-RUN apt-get update && apt-get install -y patch
+FROM maven:3.9.0-eclipse-temurin-11
+
+COPY --from=java10 /usr/lib/jvm/zulu-10-amd64 /opt/java/10
+COPY --from=java17 /opt/java/openjdk /opt/java/17
+
+RUN apt-get update && apt-get install -y patch unzip
 
 COPY ./mastersofjava/javadoc.zip /javadoc.zip
 RUN mkdir /javadoc && \

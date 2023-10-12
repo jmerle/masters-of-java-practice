@@ -1,31 +1,32 @@
 FROM azul/zulu-openjdk:10 AS java10
-FROM eclipse-temurin:17 AS java17
+FROM eclipse-temurin:11 AS java11
 
-FROM maven:3.9.0-eclipse-temurin-11
+FROM maven:3.9.4-eclipse-temurin-17 AS java17
 
 COPY --from=java10 /usr/lib/jvm/zulu-10-amd64 /opt/java/10
-COPY --from=java17 /opt/java/openjdk /opt/java/17
+COPY --from=java11 /opt/java/openjdk /opt/java/11
 
-RUN apt-get update && apt-get install -y patch unzip
+RUN apt-get update && \
+    apt-get install -y unzip socat
 
 COPY ./mastersofjava/javadoc.zip /javadoc.zip
-RUN mkdir /javadoc && \
+RUN mkdir -p /javadoc && \
     unzip -q /javadoc.zip "docs/api/*" -d /javadoc && \
-    mkdir -p /data/moj-data/javadoc && \
-    cp -r /javadoc/docs/api /data/moj-data/javadoc/api
+    mkdir -p /data/javadoc && \
+    mv /javadoc/docs/api /data/javadoc/api && \
+    rm -rf /javadoc /javadoc.zip
 
-COPY ./repositories/assignments /assignments
 COPY ./repositories/server /server
+COPY ./repositories/assignments /data/assignments
 
-COPY ./mastersofjava/update-assignments.sh /update-assignments.sh
-COPY ./mastersofjava/sort-assignments.patch /sort-assignments.patch
+RUN rm -f /server/.git
+COPY ./.git/modules/repositories/server /server/.git
+
+COPY ./mastersofjava/entrypoint.sh /entrypoint.sh
 
 WORKDIR /server
-
-RUN bash /update-assignments.sh
-RUN patch /server/src/main/java/nl/moj/server/assignment/service/AssignmentService.java /sort-assignments.patch
 RUN mvn compile
 
 COPY ./mastersofjava/application.yaml /server/src/main/resources/application.yaml
 
-ENTRYPOINT ["mvn", "spring-boot:run"]
+ENTRYPOINT ["bash", "/entrypoint.sh"]

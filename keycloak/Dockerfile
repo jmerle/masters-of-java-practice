@@ -1,6 +1,4 @@
-FROM jboss/keycloak:15.0.2
+FROM quay.io/keycloak/keycloak:22.0.4
 
-COPY ./repositories/server/src/main/keycloak-template/moj /opt/jboss/keycloak/themes/moj
-COPY ./keycloak/keycloak-export.json /keycloak-export.json
-
-ENTRYPOINT ["/opt/jboss/tools/docker-entrypoint.sh", "-Dkeycloak.import=/keycloak-export.json"]
+COPY ./repositories/server/src/main/keycloak-template/moj /opt/keycloak/themes/moj
+COPY ./keycloak/realm-export.json /opt/keycloak/data/import/realm-export.json

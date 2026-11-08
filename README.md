@@ -10,9 +10,8 @@ First time:
 3. `cd` into the repository's directory and run `docker compose up` to start the server.
 4. Wait until the server has started and then go to [http://localhost:8080/control](http://localhost:8080/control).
 5. Login with email `admin@ad.min` and password `admin`.
-6. Click on the "Bootstrap" button and wait for the admin interface to show up.
-7. Open the "Admin" tab and click the "Scan Assignments" button to load the assignments.
-8. The admin interface is now ready-to-use.
+6. Open the "Admin" tab and click the "Scan Assignments" button to load the assignments.
+7. The admin interface is now ready-to-use.
 
 After the first time:
 1. `cd` into the repository's directory and run `docker compose up` to start the server.
